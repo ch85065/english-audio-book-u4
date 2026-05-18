@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Interactive Audio Book</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div id="app-container">
+        <!-- Start Screen -->
+        <div id="start-screen" class="screen active">
+            <div class="glass-panel">
+                <h1>Interactive Story Recorder</h1>
+                <p>Record your voice to create a personal audio book!</p>
+                <button id="start-btn" class="primary-btn"><i class="fa-solid fa-microphone-lines"></i> Start Recording</button>
+            </div>
+        </div>
+
+        <!-- Editor Screen -->
+        <div id="editor-screen" class="screen hidden">
+            <div class="glass-panel editor-panel">
+                <div class="scene-counter">Scene <span id="current-scene-num">1</span> of <span id="total-scenes-num">3</span></div>
+                
+                <div class="scene-display">
+                    <img id="scene-image" src="1.png" alt="Story Scene">
+                </div>
+
+                <div class="recording-controls">
+                    <button id="record-btn" class="action-btn record"><i class="fa-solid fa-microphone"></i> <span>Record</span></button>
+                    <button id="play-btn" class="action-btn play hidden"><i class="fa-solid fa-play"></i> <span>Play</span></button>
+                    <button id="delete-btn" class="action-btn delete hidden"><i class="fa-solid fa-trash"></i></button>
+                </div>
+                <div class="recording-status" id="recording-status">Ready to record</div>
+
+                <div class="navigation-controls">
+                    <button id="prev-btn" class="nav-btn" disabled><i class="fa-solid fa-chevron-left"></i> Prev</button>
+                    <button id="next-btn" class="nav-btn">Next <i class="fa-solid fa-chevron-right"></i></button>
+                    <button id="publish-btn" class="primary-btn hidden"><i class="fa-solid fa-book-open"></i> Publish Book</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Book Player Screen -->
+        <div id="player-screen" class="screen hidden">
+            <div class="glass-panel player-panel">
+                <h2 class="book-title">My Audio Book</h2>
+                
+                <div class="book-container">
+                    <img id="player-image" src="" alt="Story Scene">
+                </div>
+
+                <div class="player-controls">
+                    <button id="player-prev-btn" class="nav-btn"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button id="player-play-btn" class="action-btn play"><i class="fa-solid fa-play"></i></button>
+                    <button id="player-next-btn" class="nav-btn"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+
+                <div class="export-controls">
+                    <button id="back-edit-btn" class="secondary-btn"><i class="fa-solid fa-arrow-left"></i> Back to Edit</button>
+                    <button id="publish-network-btn" class="primary-btn"><i class="fa-solid fa-qrcode"></i> Get QR Code</button>
+                </div>
+                
+                <div id="qr-container" class="hidden" style="margin-top: 20px; text-align: center;">
+                    <h3 style="margin-bottom: 10px;">Scan to Read on Phone!</h3>
+                    <img id="qr-code-img" src="" alt="QR Code" style="width: 200px; height: 200px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                    <p style="margin-top: 10px; font-size: 0.9rem;"><a id="publish-link" href="#" target="_blank" style="color: var(--primary-color);">Open Link</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script to handle downloading functionality nicely via JSZip -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <!-- RecordRTC for WAV recording compatible with iOS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/RecordRTC/5.6.2/RecordRTC.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
